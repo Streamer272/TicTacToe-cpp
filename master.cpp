@@ -327,6 +327,7 @@ public:
 
         cout << endl << "Program will close in 3 seconds . . ." << endl;
         sleep(3);
+        InnerSystem::clear_console();
         exit(0);
     }
 };
