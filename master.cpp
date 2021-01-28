@@ -1,21 +1,49 @@
 #include <iostream> // module for console writing and reading
-#include <ctime> // module for random function
+#include <ctime> // module for generate_random_number function
+#include <unistd.h> // module for sleep function
+#include <sys/utsname.h> // module for getting os name
+#include <cstdlib> // module for getting os name
 
 
 // specifies namepace
 using namespace std;
 
 
-// generates random number between min and max
-bool first = true;
-int random(int min, int max) {
-    if (first) {
-        srand(time(nullptr));
-        first = false;
+// class for everything else used in field that isn't field
+class InnerSystem
+{
+public:
+    // generates generate_random_number number between min and max
+    static int generate_random_number(bool first, int min, int max) {
+        if (first) {
+            srand(time(nullptr));
+        }
+
+        return min + rand() % ((max + 1) - min);
     }
 
-    return min + rand() % ((max + 1) - min);
-}
+    // returns os name as string
+    static string get_os_name()
+    {
+        struct utsname name{};
+        if(uname(&name)) exit(-1);
+
+        return name.sysname;
+    }
+
+    // clears console
+    static void clear_console()
+    {
+        if (get_os_name() == "Linux")
+        {
+            system("clear");
+        }
+        else if (get_os_name() == "Windows")
+        {
+            system("cls");
+        }
+    }
+};
 
 
 // field variable base, includes base positions, base symbols variables, base update_position and get functions
@@ -61,8 +89,8 @@ public:
 class Field
 {
 public:
-    // defines FieldBase as field
-    FieldBase field;
+    FieldBase field; // defines base field as field
+    bool first_time_random_generation = true; // first_time_random_generation time generate_random_number number generation variable
 
     // checks if index is last in row, true if index is last in row, false if isn't
     static bool is_index_last_in_row(int index)
@@ -90,14 +118,15 @@ public:
         return human_position_pick;
     }
 
-    // picks random position, repeat until pick isn't valid
+    // picks generate_random_number position, repeat until pick isn't valid
     int ask_robot()
     {
         int robot_position_pick;
 
         do
         {
-            robot_position_pick = random(0, 8);
+            robot_position_pick = InnerSystem::generate_random_number(first_time_random_generation, 0, 8);
+            first_time_random_generation = false;
         }
         while (is_position_occupied(robot_position_pick));
 
@@ -214,10 +243,25 @@ public:
         return "";
     }
 
+    bool is_field_full()
+    {
+        int positions_not_equal_to_start_symbol = 0;
+
+        for (int index = 0; index < field.length; index++)
+        {
+            if (field.on_index(index) != field.start_symbol)
+            {
+                positions_not_equal_to_start_symbol++;
+            }
+        }
+
+        return positions_not_equal_to_start_symbol != field.length;
+    }
+
     // clears console and writes field positions in console
     void write_positions()
     {
-        system("cls");
+        InnerSystem::clear_console();
 
         for (int index = 0; index < field.length; index++)
         {
@@ -270,10 +314,19 @@ public:
 
             index++;
         }
-        while (check_winner().empty());
+        while (check_winner().empty() && is_field_full());
 
-        cout << "And the winner is " << check_winner() << "!" << endl;
-        system("pause");
+        if (!check_winner().empty())
+        {
+            cout << "And the winner is " << check_winner() << "!" << endl;
+        }
+        else
+        {
+            cout << "No one is winner! Field is full" << endl;
+        }
+
+        cout << endl << "Program will close in 3 seconds . . ." << endl;
+        sleep(3);
         exit(0);
     }
 };
