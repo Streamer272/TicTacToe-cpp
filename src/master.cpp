@@ -292,7 +292,7 @@ public:
     }
 
     // repeat calling player turn and robot turn until someone wins
-    void main()
+    [[noreturn]] void main()
     {
         write_positions();
 
@@ -322,10 +322,10 @@ public:
             cout << "No one is winner! Field is full" << endl;
         }
 
-        cout << endl << "Program will close in 3 seconds . . ." << endl;
-        sleep(3);
-        InnerSystem::clear_console();
-        exit(0);
+        while (true)
+        {
+            sleep(5);
+        }
     }
 };
 
@@ -335,8 +335,6 @@ int main()
 {
     Field master;
     master.main();
-
-    return 0;
 }
 
 #pragma clang diagnostic pop
