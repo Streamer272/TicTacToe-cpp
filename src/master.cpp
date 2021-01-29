@@ -1,12 +1,18 @@
 #include <iostream> // module for console writing and reading
 #include <ctime> // module for generate_random_number function
 #include <unistd.h> // module for sleep function
-#include <sys/utsname.h> // module for getting os name
-#include <cstdlib> // module for getting os name
 
 
 // specifies namepace
 using namespace std;
+
+
+// os name finding and definition
+#if defined(_WIN32)
+#define os_name "windows"
+#elif defined(__linux__)
+#define os_name "linux"
+#endif
 
 
 // class for everything else used in field that isn't field
@@ -22,23 +28,14 @@ public:
         return min + rand() % ((max + 1) - min);
     }
 
-    // returns os name as string
-    static string get_os_name()
-    {
-        struct utsname name{};
-        if(uname(&name)) exit(-1);
-
-        return name.sysname;
-    }
-
     // clears console
     static void clear_console()
     {
-        if (get_os_name() == "Linux")
+        if (os_name == "linux")
         {
             system("clear");
         }
-        else if (get_os_name() == "Windows")
+        else if (os_name == "windows")
         {
             system("cls");
         }
@@ -341,3 +338,5 @@ int main()
 
     return 0;
 }
+
+#pragma clang diagnostic pop
