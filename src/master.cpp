@@ -1,85 +1,11 @@
 #include <iostream> // module for console writing and reading
-#include <ctime> // module for generate_random_number function
 #include <unistd.h> // module for sleep function
+#include "FieldBase.h" // class file for field base class
+#include "InnerSystem.h" // class file for inner system class
 
 
 // specifies namepace
 using namespace std;
-
-
-// os name finding and definition
-#if defined(_WIN32)
-#define os_name "windows"
-#elif defined(__linux__)
-#define os_name "linux"
-#endif
-
-
-// class for everything else used in field that isn't field
-class InnerSystem
-{
-public:
-    // generates generate_random_number number between min and max
-    static int generate_random_number(bool first, int min, int max) {
-        if (first) {
-            srand(time(nullptr));
-        }
-
-        return min + rand() % ((max + 1) - min);
-    }
-
-    // clears console
-    static void clear_console()
-    {
-        if (os_name == "linux")
-        {
-            system("clear");
-        }
-        else if (os_name == "windows")
-        {
-            system("cls");
-        }
-    }
-};
-
-
-// field variable base, includes base positions, base symbols variables, base update_position and get functions
-class FieldBase
-{
-public:
-    // base symbols variables
-    string start_symbol = " "; // every position is set to this symbol when program starts
-    string player_symbol = "X"; // symbol that player uses
-    string robot_symbol = "O"; // symbol that robot uses
-
-    // base positions to write and read
-    string positions[9] = {
-            start_symbol,
-            start_symbol,
-            start_symbol,
-            start_symbol,
-            start_symbol,
-            start_symbol,
-            start_symbol,
-            start_symbol,
-            start_symbol
-    };
-
-    // length of positions
-    int length = sizeof(positions) / sizeof(positions[0]);
-
-    // sets position on index to specified string
-    void update_position(int index, const string& new_string)
-    {
-        positions[index] = new_string;
-    }
-
-    // reads positions
-    string on_index(int index)
-    {
-        return positions[index];
-    }
-};
 
 
 // function that controls FieldBase and has multiple complex functions to make tic-tac-toe work
