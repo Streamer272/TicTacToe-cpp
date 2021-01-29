@@ -14,10 +14,12 @@ horizontal or vertical direction.
 ### How do I play Tic Tac Toe alone?
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We created a simulation of Tic Tac Toe where you play against robot, 
-so you don't need other person to play with. You can even play offline!
+so you don't need other person to play with. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You can even play offline!
 <br><br>
 
 ### How do I run the game?
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You can run game downloading and opening a.exe file, or downloading source 
-code and compiling it with command 'g++ master.cpp' and then opening a.exe
+code and compiling it with 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command 'g++ master.cpp' and then opening a.exe
