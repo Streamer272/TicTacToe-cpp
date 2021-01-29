@@ -104,7 +104,7 @@ public:
     }
 
     // checks if positions on indexes are same, true if they are same, false if they aren't
-    bool do_check(int index1, int index2, int index3)
+    bool are3positions_same(int index1, int index2, int index3)
     {
         if (field.on_index(index1) == field.on_index(index2) && field.on_index(index2) ==
             field.on_index(index3) && field.on_index(index3) != field.start_symbol)
@@ -117,46 +117,46 @@ public:
         }
     }
 
-    // checks every possible combination(calls do_check), "" if no one is winner, else if someone is winner
+    // checks every possible combination(calls are3positions_same), "" if no one is winner, else if someone is winner
     string check_winner()
     {
-        if (do_check(get_position_by_string("7"), get_position_by_string("8"),
-                     get_position_by_string("9")))
+        if (are3positions_same(get_position_by_string("7"), get_position_by_string("8"),
+                               get_position_by_string("9")))
         {
             return field.on_index(get_position_by_string("7"));
         }
-        else if (do_check(get_position_by_string("4"), get_position_by_string("5"),
-                          get_position_by_string("6")))
+        else if (are3positions_same(get_position_by_string("4"), get_position_by_string("5"),
+                                    get_position_by_string("6")))
         {
             return field.on_index(get_position_by_string("4"));
         }
-        else if (do_check(get_position_by_string("1"), get_position_by_string("2"),
-                          get_position_by_string("3")))
+        else if (are3positions_same(get_position_by_string("1"), get_position_by_string("2"),
+                                    get_position_by_string("3")))
         {
             return field.on_index(get_position_by_string("1"));
         }
-        else if (do_check(get_position_by_string("7"), get_position_by_string("4"),
-                          get_position_by_string("1")))
+        else if (are3positions_same(get_position_by_string("7"), get_position_by_string("4"),
+                                    get_position_by_string("1")))
         {
             return field.on_index(get_position_by_string("7"));
         }
-        else if (do_check(get_position_by_string("8"), get_position_by_string("5"),
-                          get_position_by_string("2")))
+        else if (are3positions_same(get_position_by_string("8"), get_position_by_string("5"),
+                                    get_position_by_string("2")))
         {
             return field.on_index(get_position_by_string("8"));
         }
-        else if (do_check(get_position_by_string("9"), get_position_by_string("6"),
-                          get_position_by_string("3")))
+        else if (are3positions_same(get_position_by_string("9"), get_position_by_string("6"),
+                                    get_position_by_string("3")))
         {
             return field.on_index(get_position_by_string("9"));
         }
-        else if (do_check(get_position_by_string("7"), get_position_by_string("5"),
-                          get_position_by_string("3")))
+        else if (are3positions_same(get_position_by_string("7"), get_position_by_string("5"),
+                                    get_position_by_string("3")))
         {
             return field.on_index(get_position_by_string("7"));
         }
-        else if (do_check(get_position_by_string("9"), get_position_by_string("5"),
-                          get_position_by_string("1")))
+        else if (are3positions_same(get_position_by_string("9"), get_position_by_string("5"),
+                                    get_position_by_string("1")))
         {
             return field.on_index(get_position_by_string("9"));
         }
@@ -244,7 +244,7 @@ public:
         }
         else
         {
-            cout << "No one is winner! Field is full" << endl;
+            cout << "No one is winner! Field is full!" << endl;
         }
 
         while (true)
