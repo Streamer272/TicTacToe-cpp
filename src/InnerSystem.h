@@ -23,10 +23,12 @@ using namespace std;
 class InnerSystem
 {
 public:
+    // create random seed on base of time for rand() function
     static void generate_init()
     {
         srand(time(nullptr));
     }
+
     // generates random number between min and max
     static int generate_random_number(int min, int max) {
         return min + rand() % ((max + 1) - min);

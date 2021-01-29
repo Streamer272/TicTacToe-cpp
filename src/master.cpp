@@ -215,7 +215,7 @@ public:
         write_positions();
     }
 
-    // repeat calling player turn and robot turn until someone wins
+    // repeat player turn and robot turn until someone wins
     [[noreturn]] void main()
     {
         InnerSystem::generate_init();
