@@ -1,6 +1,3 @@
-#include <iostream> // module for console writing and reading
-
-
 // specifies namespace
 using namespace std;
 
@@ -8,7 +5,7 @@ using namespace std;
 // file definition
 #ifndef TICTACTOE_FIELDBASE_H
 #define TICTACTOE_FIELDBASE_H
-#endif //TICTACTOE_FIELDBASE_H
+#endif
 
 
 // field variable base, includes base positions, base symbols variables, base update_position and get functions

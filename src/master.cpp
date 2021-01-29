@@ -13,7 +13,6 @@ class Field
 {
 public:
     FieldBase field; // defines base field as field
-    bool first_time_random_generation = true; // first_time_random_generation time generate_random_number number generation variable
 
     // checks if index is last in row, true if index is last in row, false if isn't
     static bool is_index_last_in_row(int index)
@@ -48,8 +47,7 @@ public:
 
         do
         {
-            robot_position_pick = InnerSystem::generate_random_number(first_time_random_generation, 0, 8);
-            first_time_random_generation = false;
+            robot_position_pick = InnerSystem::generate_random_number(0, 8);
         }
         while (is_position_occupied(robot_position_pick));
 
@@ -109,7 +107,7 @@ public:
     bool do_check(int index1, int index2, int index3)
     {
         if (field.on_index(index1) == field.on_index(index2) && field.on_index(index2) ==
-                                                                field.on_index(index3) && field.on_index(index3) != field.start_symbol)
+            field.on_index(index3) && field.on_index(index3) != field.start_symbol)
         {
             return true;
         }
@@ -220,6 +218,7 @@ public:
     // repeat calling player turn and robot turn until someone wins
     [[noreturn]] void main()
     {
+        InnerSystem::generate_init();
         write_positions();
 
         int index = 0;

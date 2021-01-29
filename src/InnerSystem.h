@@ -1,4 +1,3 @@
-#include <iostream> // module for console writing and reading
 #include <ctime> // module for generate_random_number function
 
 
@@ -24,16 +23,16 @@ using namespace std;
 class InnerSystem
 {
 public:
-    // generates generate_random_number number between min and max
-    static int generate_random_number(bool first, int min, int max) {
-        if (first) {
-            srand(time(nullptr));
-        }
-
+    static void generate_init()
+    {
+        srand(time(nullptr));
+    }
+    // generates random number between min and max
+    static int generate_random_number(int min, int max) {
         return min + rand() % ((max + 1) - min);
     }
 
-    // clears console
+    // clears console on base of os
     static void clear_console()
     {
         if (os_name == "linux")
