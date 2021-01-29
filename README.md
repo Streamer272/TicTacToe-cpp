@@ -1,5 +1,4 @@
 # Tic Tac Toe made in C++
-<br>
 
 ### What is Tic Tac Toe?
 
