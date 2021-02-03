@@ -6,8 +6,8 @@ using namespace std;
 
 
 // file definition
-#ifndef TICTACTOE_INNERSYSTEM_H
-#define TICTACTOE_INNERSYSTEM_H
+#ifndef TICTACTOE_INNERSYSTEM_CPP
+#define TICTACTOE_INNERSYSTEM_CPP
 #endif //TICTACTOE_INNERSYSTEM_H
 
 

@@ -1,7 +1,7 @@
 #include <iostream> // module for console writing and reading
 #include <unistd.h> // module for sleep function
-#include "FieldBase.h" // class file for field base class
-#include "InnerSystem.h" // class file for inner system class
+#include "FieldBase.cpp" // class file for field base class
+#include "InnerSystem.cpp" // class file for inner system class
 
 
 // specifies namepace
